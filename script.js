@@ -337,7 +337,7 @@ function calculate() {
       throw new Error("Current bid Y must be an integer from 1 to 6.");
     }
     if (!Number.isInteger(z) || z < 1) {
-      throw new Error("Z must be an integer >= 1.");
+      throw new Error("Call punishment value Z must be an integer >= 1.");
     }
     if (!Number.isInteger(players) || players < 2) {
       throw new Error("Players remaining must be an integer >= 2.");
