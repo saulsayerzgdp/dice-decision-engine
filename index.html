@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Bid Probability Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <p class="kicker">Decision Engine</p>
+      <h1>Dice Bid Probability Calculator</h1>
+      <p class="subtitle">
+        Enter your known dice and current bid. This estimates challenge, exact call,
+        and every legal raise so you can choose the highest-confidence move.
+      </p>
+    </header>
+
+    <section class="panel panel-input">
+      <h2>Inputs</h2>
+      <div class="grid">
+        <label>
+          Your dice (faces 1-6)
+          <input id="myDice" type="text" placeholder="Example: 1 2 2 5 6" value="1 2 2 5 6">
+        </label>
+
+        <label>
+          Other players' total dice left
+          <input id="otherDice" type="number" min="0" step="1" value="20">
+        </label>
+
+        <label>
+          Current bid X (quantity)
+          <input id="bidQty" type="number" min="1" step="1" value="7">
+        </label>
+
+        <label>
+          Current bid Y (face 1-6)
+          <input id="bidFace" type="number" min="1" max="6" step="1" value="2">
+        </label>
+
+        <label>
+          Exact call value Z
+          <input id="penaltyZ" type="number" min="1" step="1" value="1">
+        </label>
+
+        <label>
+          Players remaining (including you)
+          <input id="playerCount" type="number" min="2" step="1" value="4">
+        </label>
+      </div>
+      <button id="calcBtn" class="btn-primary">Recalculate</button>
+      <p id="error" class="error"></p>
+    </section>
+
+    <section class="panel panel-summary" id="summaryPanel">
+      <h2>Summary</h2>
+      <div id="summaryCards" class="cards"></div>
+    </section>
+
+    <section class="panel panel-analytics" id="analyticsPanel">
+      <h2>Analytics</h2>
+      <div id="bestAction" class="best-action"></div>
+      <div id="analyticsCards" class="cards analytics-cards"></div>
+    </section>
+
+    <section class="panel panel-raises">
+      <h2>Legal Raises (Minimum-True Probability)</h2>
+      <p id="raiseMeta" class="subtitle"></p>
+      <div class="table-controls">
+        <button id="sortRaisesBtn" class="btn-ghost" type="button">Sort: Bid Order</button>
+        <button id="toggleRaisesBtn" class="btn-ghost" type="button">Show Full List</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Raise Bid</th>
+              <th>Chance Bid Is True (>=)</th>
+              <th>Chance Bid Is False (&lt;)</th>
+            </tr>
+          </thead>
+          <tbody id="raiseTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
